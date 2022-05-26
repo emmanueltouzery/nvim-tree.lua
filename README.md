@@ -190,6 +190,9 @@ require'nvim-tree'.setup { -- BEGIN_DEFAULT_OPTS
       global = false,
       restrict_above_cwd = false,
     },
+    expand_all = {
+      max_folder_discovery = 300,
+    },
     open_file = {
       quit_on_open = false,
       resize_window = true,
