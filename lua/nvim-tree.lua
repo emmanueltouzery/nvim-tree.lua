@@ -389,8 +389,7 @@ local function setup_autocommands(opts)
       pattern = "NvimTree_*",
       callback = function()
         vim.schedule(function()
-          local keys = api.nvim_replace_termcodes("zz", true, false, true)
-          api.nvim_feedkeys(keys, "n", true)
+          vim.cmd "norm! zz"
         end)
       end,
     })
