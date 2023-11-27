@@ -208,7 +208,8 @@ local function setup_autocommands(opts)
   create_nvim_tree_autocmd("BufUnload", {
     callback = function(data)
       -- update opened file buffers
-      if (filters.config.filter_no_buffer or renderer.config.highlight_opened_files ~= "none") and vim.bo[data.buf].buftype == "" then
+      local ok, buf_type = pcall(vim.api.nvim_buf_get_option, data.buf, "buftype")
+      if ok and (filters.config.filter_no_buffer or renderer.config.highlight_opened_files ~= "none") and buf_type == "" then
         utils.debounce("Buf:filter_buffer", opts.view.debounce_delay, function()
           actions.reloaders.reload_explorer()
         end)
