@@ -45,7 +45,8 @@ end
 
 function M.draw()
   local bufnr = view.get_bufnr()
-  if not core.get_explorer() or not bufnr or not vim.api.nvim_buf_is_loaded(bufnr) then
+  local winnr = view.get_winnr()
+  if not core.get_explorer() or not bufnr or not vim.api.nvim_buf_is_loaded(bufnr) or not winnr or not vim.api.nvim_win_is_valid(winnr) then
     return
   end
 
